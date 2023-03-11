@@ -1,0 +1,81 @@
+/* The Modal (background) */
+.custom_modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  position: fixed; /* Stay in place */
+  z-index: 20; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.custom_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding: 10px 20px;
+}
+.custom_nav > h3 {
+  color: #444444;
+  font-weight: bold;
+}
+.custom_text {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 10px 20px;
+}
+.custom_text > p {
+  text-align: center;
+  color: #444444;
+}
+.custom_text > div {
+  margin: 0 auto;
+}
+.custom_text > div > a {
+  text-align: center;
+  color: #444444;
+}
+.custom_text > div > a::after {
+  padding-bottom: 0.1428571429em;
+  border-bottom: 0.0714285714em solid #444444;
+  content: "";
+  display: block;
+  width: auto;
+}
+.custom_modal-content {
+  max-width: 400px;
+  background-color: #fefefe;
+  margin: auto;
+  width: 100%;
+}
+.custom_modal-content > img,
+.custom_modal-content > a > img {
+  width: 100%;
+  height: auto;
+}
+
+/* The Close Button */
+.custom_close {
+  color: #444444;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.custom_close:hover,
+.custom_close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

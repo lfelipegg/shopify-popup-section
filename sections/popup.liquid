@@ -1,0 +1,118 @@
+{%- liquid
+  assign heading = section.settings.heading
+  assign text = section.settings.regular_text
+  assign link_text = section.settings.link-text
+  assign link_url = section.settings.link-url
+-%}
+{{ 'popup.css' | asset_url | stylesheet_tag }}
+{% stylesheet %}
+{% endstylesheet %}
+
+<div id="modalCustom"
+  class="custom_modal"
+  style="display: flex;">
+
+  <!-- Modal content -->
+  <div class="custom_modal-content">
+    <div class="custom_nav">
+      <h3>{{- heading | escape -}}</h3>
+      <span class="custom_close">&times;</span>
+    </div>
+    {% for block in section.blocks %}
+        {%- liquid
+             assign image = block.settings.image
+             assign url2 = block.settings.link-url-block
+        -%}
+        {% if url2 != blank %}
+            <a href="{{ url2 }}">
+        {% endif %}
+        <img src="{{ image | image_url: width: 450 }}" alt="promocion" loading="lazy" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" />
+        {% if url2 != blank %}
+            </a>
+        {% endif %}
+    {% endfor %}
+    
+    <div class="beshine_text">
+      {%- if text != blank -%}
+        <p>
+          {{- text | escape -}}
+        </p>
+      {%- endif -%}
+      {%- if link_url != blank -%}
+        <div>
+          <a  href="{{ link_url }}">
+            {%- if link_text != blank -%}
+              {{- link_text | escape -}}
+              {%- else -%}
+              Ver promoción
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endif -%}
+      
+    </div>
+  </div>
+</div>
+<script src="{{ 'popup.js' | asset_url }}" defer></script>
+{% comment %} {{ 'popup.js' | asset_url | script_tag }} {% endcomment %}
+{% javascript %}
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "Popup",
+    "settings":[{
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Promoción"
+    },
+    {
+      "type": "textarea",
+      "id": "regular_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link-url",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "link-text",
+      "label": "Link text"
+    }],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Imagen",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+          "type": "url",
+          "id": "link-url-block",
+          "label": "Link"
+        }
+        ]
+      }
+    ],
+    "presets": [
+    {
+      "name": "Popup",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}
